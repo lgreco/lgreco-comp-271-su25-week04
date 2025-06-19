@@ -16,32 +16,37 @@ There is no final exam for the course. There will be a final assignemnt that wil
 
 # Code
 
-For this coding part, class `TrainLine_Implementation` has 8 basic tests that you must pass. The class cannot be compiled before you write the specified methods below. Your code must pass all tests in the implementation class.
+You'll work with classes `Node.java` and `DoubleLinkedList.java`. 
 
-## Faster addition of new station
+## Complete `void add(Node node)` in `DoubleLinkedList`
 
-Study the code in classes [`Station`](./Station.java), [`TrainLine`](./TrainLine.java), and [`TrainLine_Implementation`](./TrainLine_Implementation.java). Notice that method `TrainLine.add` has to iterate over the entire line to find the last station, before adding a new station at the end of the line. Investigate if there is a way to avoid the traversal, recalling our discussion about counting the number of stations in the line. Document your strategy as comments for method `TrainLine.add` then implement the changes you proposed. Your code should work with class `TrainLine_Implementation` just like before, i.e., the stations should be added in the same order and shown in the same order when the object is printed.
+This method takes a `Node` object and adds it to the end of the linked list. The method, as written, is incomplete. It only sets the newly added node's `next` pointer. Write code that takes care of the newly added notes `previous` pointer.
 
-## Search for the position of a train station
+## Complete `void add(String value)` in `DoubleLinkedList`
 
-Write a method with header
+The earlier method adds a `Node` to the list. This method adds a node to the list after it creates a new one based a given `value`.
+
+## Modify `DoubleLinkedList` with a size field
+
+## Complete `int compareTo(DoubleLinkedList other)` in `DoubleLinkedList`
+
+Imagine two `DoubleLinkedList` objects, say `A` and `B`. How would you like to compare them? Rewrite method `compareTo` so that
 ```java
-public int indexOf(String stationName)
+A.compareTo(B)
 ```
-that returns the position of the named station: 0 if it's the first station, 1 if it's the second, etc. If the station we search for is not present in the train line, the method should return -1.
-
-## Predicate-based search
-
-Write a method with header
-```java
-public boolean contains(String stationName)
-```
-that returns `true` if the named station is present in the train line and `false` otherwise.
-
+will return a negative integer number is `A` is smaller than `B`, a positive integer number if `A` is greater than `B`, and zero when `A` and `B` are the similar. You are free to define what a smaller/greater/similar list is. For consistency, if `A.compareTo(B)` is negative then `B.compareTo(A)` must be positive. *Ideally,* we want
+$$
+\texttt{A.compareTo(B)} = -\ \texttt{B.compareTo(A)}
+$$
+This identity applies even when `A` and `B` are similar because we can always claim that $0=-\ 0$.
 
 # Study
 
-* <a href="https://docs.oracle.com/javase/tutorial/java/javaOO/accesscontrol.html" target = "_blank">Tutorial about classes and objects</a>
+From the BJP textbook Chapters 16.1, 16.2, and 16.3; or [Ch. 5 from Collins’ book](https://learning.oreilly.com/library/view/data-structures-and/9780470482674/14-chapter07.html). In addition, you should be up to speed with the following.
+
+* Chapter 18.2 from the BJP textbook (or at the very least Leo’s notes titled “What’s Realistic”)
+* Chapter 8 from the BJP textbook (or at the very least Java’s tutorial on Classes and Objects)
+* Chapter 9 from the BJP textbook (or at the very least Java's tutorial on interfaces and inheritance)
 
 # Reflect
 
