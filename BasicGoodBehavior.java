@@ -1,6 +1,5 @@
 public interface BasicGoodBehavior {
 
-    
     public String toString();
 
     /**
