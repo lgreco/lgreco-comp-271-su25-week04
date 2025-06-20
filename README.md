@@ -1,4 +1,4 @@
-# COMP 271 SU25 WEEK 03
+# COMP 271 SU25 WEEK 04
 
 This assignment has two parts: a coding part based on current material we discuss in class and a reflection part to evaluate work you have already submitted.
 
@@ -26,7 +26,11 @@ This method takes a `Node` object and adds it to the end of the linked list. The
 
 The earlier method adds a `Node` to the list. This method adds a node to the list after it creates a new one based a given `value`.
 
-## Modify `DoubleLinkedList` with a size field
+## Count the nodes in a `DoubleLinkedList`
+Modify the class `DoubleLinkedList` so that it can report the number of nodes present in the list. The reporting should be done with method
+```java
+public int size() {}
+```
 
 ## Complete `int compareTo(DoubleLinkedList other)` in `DoubleLinkedList`
 
@@ -40,7 +44,23 @@ $$
 $$
 This identity applies even when `A` and `B` are similar because we can always claim that $0=-\ 0$.
 
+## Write an `indexOf` method in `DoubleLinkedList``
+The method's header should be 
+```java
+public int indexOf(String value) {}
+```
+and should return the position of the node in the list with the given value, starting with 0 for the `head` node. If no node in the list has the given value, the method should return `-1`. 
+
+## Write a `contains` method in `DoubleLinkedList`
+The method's header should be 
+```java
+public boolean contains(String value) {}
+```
+and should return `true` if the list contains a node with the given string and `false` otherwise.
+
 # Study
+
+The [Comparable interface](https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Comparable.html) on Java.
 
 From the BJP textbook Chapters 16.1, 16.2, and 16.3; or [Ch. 5 from Collins’ book](https://learning.oreilly.com/library/view/data-structures-and/9780470482674/14-chapter07.html). In addition, you should be up to speed with the following.
 
@@ -50,23 +70,28 @@ From the BJP textbook Chapters 16.1, 16.2, and 16.3; or [Ch. 5 from Collins’ b
 
 # Reflect
 
-Compare your code from the previous assignment with [Leo's posted solutions](./MinHeap.java#L191). 
+Compare your code from the previous assignment with Leo's posted solutions: ([solutions_TrainLine](https://github.com/lgreco/comp-271-su25-week03/blob/main/solution_TrainLine.java); and for testing purposes: [solutions_TrainLine_Implementation](https://github.com/lgreco/comp-271-su25-week03/blob/main/solution_TrainLine_Implementation.java)). 
 
 Then write a brief reflection (100-300 words) discussing what you got right, what you got close but not quite, and where you may have missed the mark. Also discuss what you learned by comparing your code to the posted solutions. The reflection must be substantive. For example, you may find that you missed something in the assignment because you did not put enough time in it or because you did not start work early. It's fine to acknowledge these issues. It is also important to propose a plan to avoid them in the future. And, in later reflections, evaluate how that plan worked.
 
-In the assignment for WEEK 02 you were given class `MinHeap`. The class had a dozen of methods in 300 lines of code. One of the methods (`heapifyUp`) was incomplete. You had to complete it. The solution presented here is very compact, practically implemented with 5 lines of code (shown as pseudocode here):
+In the assignment for WEEK 03 you were given class `TrainLine` and asked to improve it in several ways.
 
-```java
-int index = last used position in underlying array;
-while (min-heap property is violated) {
-    swap(parent(index), index);
-    index = parent(index); }
-```
+* **Modify the class for faster station additions.** Originally, method `TrainLine.add` was written to traverse the length of the line in order to find its last station; then add the new station after the last station. There is a faster way to add a station. We demonstrated, in class, how a train line traversal can be replaced by a single variable, when we realized that we do not need to count the train stations every time we need to find how many of them are in a line. Instead we created a new class variable (`numberOfStations`) and we kept it current every time we added a station. Similarly, the while-loop in `TrainLine.add` can be avoided if we introduce an second `Station` field in `TrainLine`. In the solutions, the new field is called `last` and is meant as a pointer to the last station of the line. With this new field in place, the `add` method does not need a while-loop any more. A new station can he added directly after the last station,<br/>
+`this.last.setNext(newStation);`<br/>
+and then the last station pointer updated:<br/>
+`this.last = newStation;`
 
-* Was your code sufficiently documented with comments?.
+* **Write an `int indexOf` method.** This requires a traversal (iteration) of the line until the target station is found or until we reach the end of the line without finding the target station. The method may be a bit challenging because it **must be written with a single `return` statement.** If your code for this method has more than one return statement, the assignment is incomplete. In this case, you must make an appointment to speak with Leo, as soon as possible.
 
-* Did you test your code to verify that it compiles and returns correct results?
+* **Write a `boolean contains` method.** This is an exercise in coding efficiency. The contains method can be writen with a while-loop traversing the line until the station is found or not found... sounds familiar? That's what the `indexOf` method already does. And if a station is present in the line, its `indexOf` value will be $>-1$. And so, the `contains` method requires only a call to `indexOf`!
 
-Your reflection should be submitted together with the current homework assignment due 6/11. Write your reflection as a *markdown* file called `reflection.md` in the current assignment's repository. **MarkDown** is a fairly simple markup (I know!) language that's worth learning. You can use a [simple cheat sheet](https://www.markdownguide.org/basic-syntax/) for MarkDown (.md) files or you can look at the course code of any `.md` file I share with you such as this one here. You can open any `.md` file on your CodeSpaces editor to see how it's written. 
+* **Does your code compile** with class `TrainLine_Implemnetation`? If not, the assignment is incomplete. If your assignment is incomplete you must make an appointment to speak with Leo, as soon as possible.
+
+* **Did your code pass the tests** in `TrainLine_Implementation`? If not, the assignment is incomplete. If your assignment is incomplete you must make an appointment to speak with Leo, as soon as possible.
+
+* If your code is incomplete for any of the reasons above, please reflect on the cause. Did you start late? Did you hit a roadblock but did not ask for help? Did you not read the Programmer's Pact? Something else?
+
+
+Your reflection should be submitted together with the current homework assignment due 6/25. Write your reflection as a *markdown* file called `reflection.md` in the current assignment's repository. **MarkDown** is a fairly simple markup (I know!) language that's worth learning. You can use a [simple cheat sheet](https://www.markdownguide.org/basic-syntax/) for MarkDown (.md) files or you can look at the course code of any `.md` file I share with you such as this one here. You can open any `.md` file on your CodeSpaces editor to see how it's written. 
 
 If MarkDown is not your cup of tea that's ok too. Write your reflection in an email and send it to me with the header "reflection" in the subject line. But if you see yourself as a programmer/computer scientist down the road, it's worth the time to learn to write in MarkDown.
