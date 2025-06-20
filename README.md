@@ -16,7 +16,7 @@ There is no final exam for the course. There will be a final assignemnt that wil
 
 # Code
 
-You'll work with classes `Node.java` and `DoubleLinkedList.java`. 
+You'll work with classes `Node.java` and `DoubleLinkedList.java`. There are 6 tasks in this assignment.
 
 ## Complete `void add(Node node)` in `DoubleLinkedList`
 
@@ -26,7 +26,7 @@ This method takes a `Node` object and adds it to the end of the linked list. The
 
 The earlier method adds a `Node` to the list. This method adds a node to the list after it creates a new one based a given `value`.
 
-## Count the nodes in a `DoubleLinkedList`
+## Report the number of nodes in a `DoubleLinkedList`
 Modify the class `DoubleLinkedList` so that it can report the number of nodes present in the list. The reporting should be done with method
 ```java
 public int size() {}
