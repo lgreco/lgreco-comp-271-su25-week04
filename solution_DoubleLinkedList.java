@@ -79,15 +79,47 @@ public class solution_DoubleLinkedList implements Comparable<solution_DoubleLink
      */
     public void add(String value) {
         this.add(new Node(value));
-    }
+    } // method add
 
     /** Straight forward accessor for size */
     public int getSize() {
         return this.size;
-    }
+    } // method getSize
 
-    // implement the comparable interface
+    /* Implements interface comparable. The list with the most vowels wins */
     public int compareTo(solution_DoubleLinkedList other) {
-        return this.getSize() - other.getSize();
-    }
-}
+        int thisTotal = 0;
+        int otherTotal = 0;
+        int outcome = 1;
+        if (other != null) {
+            Node cursor = this.head;
+            while (cursor != null) {
+                thisTotal += this.countVowels(cursor.getValue());
+                cursor = cursor.getNext();
+            }
+            cursor = other.head;
+            while (cursor != null) {
+                otherTotal += this.countVowels(cursor.getValue());
+                cursor = cursor.getNext();
+            }
+            outcome = thisTotal - otherTotal;
+        }
+        return outcome;
+    } // method compareTo
+
+    /** Helper function to count the number of vowels in a node object. */
+    private int countVowels(String string) {
+        int count = 0;
+        if (string != null) {
+            String stringLower = string.toLowerCase();
+            final String VOWELS = "aeiou"; // ok to omit y
+            for (int i = 0; i < stringLower.length(); i++) {
+                char c = stringLower.charAt(i);
+                if (VOWELS.indexOf(c) > -1) {
+                    count += 1;
+                }
+            }
+        }
+        return count;
+    } // method countVowels
+} // class solutions_DoubleLinkedList
