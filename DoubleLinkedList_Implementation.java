@@ -1,8 +1,8 @@
 public class DoubleLinkedList_Implementation {
     public static void main(String[] args) {
         // Setup a couple of test linked lists.
-        nfs_DoubleLinkedList foo = new nfs_DoubleLinkedList();
-        nfs_DoubleLinkedList bar = new nfs_DoubleLinkedList();
+        solution_DoubleLinkedList foo = new solution_DoubleLinkedList();
+        solution_DoubleLinkedList bar = new solution_DoubleLinkedList();
         foo.add("Hello World!");
         bar.add("Howard");
         bar.add("Jarvis");

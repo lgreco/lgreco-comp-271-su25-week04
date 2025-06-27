@@ -1,4 +1,4 @@
-public class DoubleLinkedList implements Comparable<nfs_DoubleLinkedList> {
+public class DoubleLinkedList implements Comparable<solution_DoubleLinkedList> {
 
     private static final String DEFAULT_NAME = "Whatever";
 
@@ -40,7 +40,7 @@ public class DoubleLinkedList implements Comparable<nfs_DoubleLinkedList> {
     } // method add
 
     // implement the comparable interface
-    public int compareTo(nfs_DoubleLinkedList other) {
+    public int compareTo(solution_DoubleLinkedList other) {
         return -1234567;
     } // method compareTo
 } // class DoubleLinkedList
